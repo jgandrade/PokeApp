@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IoMdPerson } from "react-icons/io";
-import { IconType } from "react-icons/lib/esm/iconBase";
 
 type initStateType = {
   name: string;
-  image: string | IconType;
+  image: string;
   favorites: {
     pokemonName: string;
     url: string;
@@ -13,7 +11,7 @@ type initStateType = {
 
 const initialState: initStateType = {
   name: "Guest",
-  image: IoMdPerson,
+  image: "",
   favorites: [],
 };
 

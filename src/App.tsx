@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import Nav from "./components/Nav";
-import { useSelector } from "react-redux";
-import Library from "./pages/Library";
-import Pokemon from "./pages/Pokemon";
+import {
+  Home,
+  Library,
+  LibraryPage,
+  Favorites,
+  Pokemon,
+} from "./imports/__import_to_app__";
 
 function App() {
   return (
     <div className="App">
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/library" element={<Library />} />
-        <Route path="/pokemon/:name" element={<Pokemon />} />
-      </Routes>
+      <Suspense fallback={<div>LOADING...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/library" element={<Library />}>
+            <Route path=":page" element={<LibraryPage />} />
+            <Route path=":name" element={<Pokemon />} />
+          </Route>
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
