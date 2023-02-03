@@ -10,16 +10,15 @@ type PokemonCard = {
 };
 
 function PokemonCard({ name, id, img }: PokemonCard) {
-  const [clicked, setClicked] = useState(false);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const toggleFlipCard = () => {
     cardRef.current?.classList.toggle("rotate-card");
-  }, [clicked]);
+  };
 
   return (
-    <div className="flip-card" onClick={() => setClicked(!clicked)}>
+    <div className="flip-card" onClick={() => toggleFlipCard()}>
       <div ref={cardRef} className="flip-card-inner">
         <div className="flip-card-front">
           <div className="flex flex-col justify-center items-stretch border rounded shadow-md min-w-[180px] min-h-[210px] max-h-[210px] max-w-[180px] p-2">
