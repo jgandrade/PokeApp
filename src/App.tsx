@@ -9,12 +9,14 @@ import {
   Pokemon,
 } from "./imports/__import_to_app__";
 import NotFound from "./pages/NotFound";
+import Loader2 from "./components/Loader2";
+import Loader from "./components/Loader";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App min-h-screen min-w-full">
       <Nav />
-      <Suspense fallback={<div>LOADING...</div>}>
+      <Suspense fallback={<div className="h-[calc(100vh-3rem)] flex justify-center items-center"><Loader /></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />}>
