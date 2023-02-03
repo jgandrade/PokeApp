@@ -4,12 +4,14 @@ type initStateType = {
   count: number;
   pages: number;
   pageData: [];
+  pokemonData: {};
 };
 
 const initialState: initStateType = {
   count: NaN,
   pages: NaN,
   pageData: [],
+  pokemonData: {},
 };
 
 const pokemonSlice = createSlice({
@@ -23,9 +25,12 @@ const pokemonSlice = createSlice({
     setPageData: (state, action) => {
       state.pageData = action.payload;
     },
+    setPokemonData: (state, action) => {
+      state.pokemonData = action.payload;
+    },
   },
 });
 
-export const { setPokemons, setPageData } = pokemonSlice.actions;
+export const { setPokemons, setPageData, setPokemonData } = pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

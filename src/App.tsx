@@ -8,6 +8,7 @@ import {
   Favorites,
   Pokemon,
 } from "./imports/__import_to_app__";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/library" element={<Library />}>
             <Route path=":page" element={<LibraryPage />} />
-            <Route path=":name" element={<Pokemon />} />
           </Route>
+          <Route path="/pokemon/:name" element={<Pokemon />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>
