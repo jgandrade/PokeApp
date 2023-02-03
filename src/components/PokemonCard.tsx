@@ -16,7 +16,6 @@ function PokemonCard({ name, id, img }: PokemonCard) {
 
   useEffect(() => {
     cardRef.current?.classList.toggle("rotate-card");
-    console.log(cardRef.current)
   }, [clicked]);
 
   return (
