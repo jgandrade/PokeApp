@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import "../styles/card.css";
 
-type PokemonCard = {
-  name: string;
-  id: number;
-  img: string;
-};
-
-function PokemonCard({ name, id, img }: PokemonCard) {
-  if (id > 905) {
-    img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-  }
+function PokemonCard({ sprites, id, name, weight, height }: any) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(true);
   const toggleFlipCard = () => {
@@ -36,17 +27,26 @@ function PokemonCard({ name, id, img }: PokemonCard) {
               <img
                 className="min-h-[150px] max-h-[150px] min-w-[150px]"
                 style={loading ? { display: "none" } : {}}
-                src={img}
+                src={sprites?.other["official-artwork"]?.front_default}
                 alt={`${id}-img`}
                 onLoad={() => setLoading(false)}
               />
             </Link>
-            <p className="font-bold text-red-400 self-center">
+            <p className="font-bold self-center">
               {id}. {name.toUpperCase()}
             </p>
           </div>
         </div>
         <div className="flip-card-back">
+          <img
+            width={150}
+            src={`${
+              sprites?.versions["generation-v"]["black-white"].animated
+                ?.front_default ||
+              sprites?.other["official-artwork"]?.front_default
+            }`}
+            loading="lazy"
+          />
           <p className="title">BACK</p>
           <p>Leave Me</p>
         </div>

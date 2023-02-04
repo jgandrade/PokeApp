@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
 
-export default function useDetails() {
-  const { count, pages, pageData, pokemonData, loadingData } = useSelector(
-    (state: any) => state.pokemon
-  );
-  return { count, pages, pageData, pokemonData, loadingData };
+export default function usePokemons() {
+  const { pageData, pokemonData } = useSelector((state: any) => state.pokemon);
+  return { pageData, pokemonData };
 }

@@ -10,6 +10,8 @@ export const store = configureStore({
     [pokeApi.reducerPath]: pokeApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(pokeApi.middleware);
+    return getDefaultMiddleware({ serializableCheck: false }).concat(
+      pokeApi.middleware
+    );
   },
 });

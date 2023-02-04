@@ -2,32 +2,22 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import { useDispatch } from "react-redux";
-import { setLoadingData, setPokemonData } from "../redux/pokemonSlice";
+import { setPokemonData } from "../redux/pokemonSlice";
 import usePokemons from "../hooks/usePokemons";
 import Loader from "../components/Loader";
 import Loader2 from "../components/Loader2";
+import { useGetPokemonDataQuery } from "../redux/pokeApi";
 
 function Pokemon() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { pokemonData, loadingData } = usePokemons();
   const { name } = useParams();
   const [loading, setLoading] = useState(true);
-
-  const fetchPokemonData = useCallback(async () => {
-    dispatch(setLoadingData(true));
-    let pokemonData = await axios.get(`/pokemon/${name}`);
-    dispatch(setPokemonData(pokemonData.data));
-    dispatch(setLoadingData(false));
-  }, [name]);
-
-  useEffect(() => {
-    fetchPokemonData();
-  }, [fetchPokemonData, name]);
+  const { data: pokemonData, isFetching } = useGetPokemonDataQuery(name);
 
   return (
     <div className="min-h-screen min-w-full flex flex-col justify-start items-center">
-      {loadingData ? (
+      {isFetching ? (
         <div className="">
           <Loader2 />
         </div>

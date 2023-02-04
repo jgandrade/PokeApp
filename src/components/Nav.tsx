@@ -3,9 +3,10 @@ import useDetails from "../hooks/useDetails";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
+
 function Nav() {
   const { name, image } = useDetails();
-
+  
   return (
     <nav className="flex h-12 justify-between items-center px-40 bg-red-500 text-white font-bold">
       <h1>PokeApp</h1>

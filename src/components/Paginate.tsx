@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import Page from "./Page";
 import { useGetPokemonSpeciesByGenerationQuery } from "../redux/pokeApi";
 

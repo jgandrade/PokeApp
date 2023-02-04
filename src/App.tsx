@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import {
   Home,
-  LibraryPage,
+  Library,
   Favorites,
   Pokemon,
 } from "./imports/__import_to_app__";
@@ -24,7 +24,7 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/library/:page" element={<LibraryPage />} />
+          <Route path="/library/:page" element={<Library />} />
           <Route path="/pokemon/:name" element={<Pokemon />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<NotFound />} />

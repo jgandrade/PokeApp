@@ -13,7 +13,7 @@ export const pokeApi = createApi({
       query: (number) => `/generation/${number}`,
     }),
     getPokemonData: builder.query({
-      query: (name: string) => `/pokemon/${name}`,
+      query: (name: string | undefined) => `/pokemon/${name}`,
     }),
   }),
 });

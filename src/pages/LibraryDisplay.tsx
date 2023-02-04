@@ -5,7 +5,6 @@ import Loader2 from "../components/Loader2";
 import Error from "../components/Error";
 import { useGetPokemonSpeciesInGenerationQuery } from "../redux/pokeApi";
 import sort from "../functions/quicksort";
-import Paginate from "../components/Paginate";
 
 function DisplayPokemonCard(pokemonDatas: any[]): any {
   return sort(pokemonDatas)?.map(
@@ -31,7 +30,7 @@ function DisplayPokemonCard(pokemonDatas: any[]): any {
   );
 }
 
-function LibraryPage() {
+function LibraryDisplay() {
   const { page } = useParams();
   const pageNumber = useMemo(() => page, [page]);
 
@@ -44,7 +43,6 @@ function LibraryPage() {
 
   return (
     <div>
-      <Paginate />
       <div className="flex flex-wrap gap-10 justify-center items-center">
         {DisplayPokemonCard(data?.pokemon_species)}
       </div>
@@ -52,4 +50,4 @@ function LibraryPage() {
   );
 }
 
-export default LibraryPage;
+export default LibraryDisplay;
