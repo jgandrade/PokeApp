@@ -1,61 +1,53 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { PokemonCard } from "../imports/__import_to_app__";
-import axios from "../api/axios";
-import { setLoadingData, setPageData } from "../redux/pokemonSlice";
-import usePokemons from "../hooks/usePokemons";
 import Loader2 from "../components/Loader2";
+import Error from "../components/Error";
+import { useGetPokemonSpeciesInGenerationQuery } from "../redux/pokeApi";
+import sort from "../functions/quicksort";
+import Paginate from "../components/Paginate";
 
-function LibraryPage() {
-  const dispatch = useDispatch();
-  const { page } = useParams();
-  const { pageData, loadingData } = usePokemons();
-
-  const pokemonDatas = useCallback(async () => {
-    dispatch(setLoadingData(true));
-    let pokemonDatas = [];
-    for (let i = Number(page) * 100 - 100 + 1; i <= Number(page) * 100; i++) {
-      if (i === 1009) break;
-      try {
-        let response = await axios.get(`/pokemon/${i}`);
-        pokemonDatas.push(response.data);
-      } catch (err) {
-        if (err) break;
+function DisplayPokemonCard(pokemonDatas: any[]): any {
+  return sort(pokemonDatas)?.map(
+    (e: { name: string; url: string }, i: number) => {
+      const match = e?.url.match(/species\/(\d+)/);
+      let id = "";
+      if (match) {
+        id = match[1];
       }
-    }
-    dispatch(setPageData(pokemonDatas));
-    dispatch(setLoadingData(false));
-  }, [page]);
-
-  useEffect(() => {
-    pokemonDatas();
-  }, [page, pokemonDatas]);
-
-  function DisplayPokemonCard() {
-    return pageData?.map((e: { name: string; id: number; sprites: any }) => {
       return (
         <div
-          key={`${e.name}-${e.id}`}
+          key={`${e.name}-${i}`}
           className="w-[25%] flex justify-center items-center"
         >
           <PokemonCard
-            img={
-              e?.sprites?.front_default
-                ? e?.sprites?.front_default
-                : e?.sprites?.other["official-artwork"]?.front_default
-            }
             name={e?.name}
-            id={e?.id}
+            id={Number(id)}
+            img={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
           />
         </div>
       );
-    });
-  }
+    }
+  );
+}
+
+function LibraryPage() {
+  const { page } = useParams();
+  const pageNumber = useMemo(() => page, [page]);
+
+  const { data, isFetching, error } = useGetPokemonSpeciesInGenerationQuery(
+    Number(pageNumber)
+  );
+
+  if (isFetching) return <Loader2 />;
+  if (error) return <Error err={error} />;
 
   return (
-    <div className="flex flex-wrap gap-10 justify-center items-center">
-      {loadingData ? <Loader2 /> : <DisplayPokemonCard />}
+    <div>
+      <Paginate />
+      <div className="flex flex-wrap gap-10 justify-center items-center">
+        {DisplayPokemonCard(data?.pokemon_species)}
+      </div>
     </div>
   );
 }

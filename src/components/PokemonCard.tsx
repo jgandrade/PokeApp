@@ -10,9 +10,11 @@ type PokemonCard = {
 };
 
 function PokemonCard({ name, id, img }: PokemonCard) {
+  if (id > 905) {
+    img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+  }
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(true);
-
   const toggleFlipCard = () => {
     cardRef.current?.classList.toggle("rotate-card");
   };
