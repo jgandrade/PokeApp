@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import "../styles/card.css";
@@ -6,9 +6,9 @@ import "../styles/card.css";
 function PokemonCard({ sprites, id, name, weight, height }: any) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(true);
-  const toggleFlipCard = () => {
+  const toggleFlipCard = useCallback(() => {
     cardRef.current?.classList.toggle("rotate-card");
-  };
+  }, [cardRef]);
 
   return (
     <div className="flip-card" onClick={() => toggleFlipCard()}>
@@ -25,6 +25,7 @@ function PokemonCard({ sprites, id, name, weight, height }: any) {
                 </div>
               ) : null}
               <img
+                width={20}
                 className="min-h-[150px] max-h-[150px] min-w-[150px]"
                 style={loading ? { display: "none" } : {}}
                 src={sprites?.other["official-artwork"]?.front_default}
@@ -39,7 +40,7 @@ function PokemonCard({ sprites, id, name, weight, height }: any) {
         </div>
         <div className="flip-card-back">
           <img
-            width={150}
+            width={100}
             src={`${
               sprites?.versions["generation-v"]["black-white"].animated
                 ?.front_default ||

@@ -29,7 +29,7 @@ function Pokemon() {
           {loading ? <Loader /> : null}
           <img
             style={loading ? { display: "none" } : { width: 150 }}
-            src={pokemonData?.sprites?.other?.dream_world?.front_default}
+            src={pokemonData?.sprites?.other["official-artwork"]?.front_default}
             alt={name}
             onLoad={() => setLoading(false)}
           />
