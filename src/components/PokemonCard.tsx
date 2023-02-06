@@ -34,7 +34,7 @@ function PokemonCard({ sprites, id, name, weight, height }: any) {
               />
             </Link>
             <p className="font-bold self-center">
-              {id}. {name.toUpperCase()}
+              {id}. {name?.toUpperCase()}
             </p>
           </div>
         </div>

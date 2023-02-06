@@ -31,7 +31,6 @@ function Library() {
           <PokemonCard key={e.id} {...e} />
         ))}
       </div>
-      )
     </div>
   );
 }

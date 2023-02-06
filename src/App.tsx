@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import Loader2 from "./components/Loader2";
 import Loader from "./components/Loader";
 import Paginate from "./components/Paginate";
+import LibraryPage from "./pages/LibraryPage";
 
 function App() {
   return (
@@ -18,13 +19,11 @@ function App() {
           </div>
         }
       >
-        <Paginate />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/library" element={<Library />}>
-            <Route path="/library/:page" element={<Library />} />
+          <Route path="/library" element={<LibraryPage />}>
+            <Route path=":page" element={<Library />} />
           </Route>
-
           <Route path="/pokemon/:name" element={<Pokemon />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<NotFound />} />
