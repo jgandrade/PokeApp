@@ -1,15 +1,11 @@
 import { Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
-import {
-  Home,
-  Library,
-  Favorites,
-  Pokemon,
-} from "./imports/__import_to_app__";
+import { Home, Library, Favorites, Pokemon } from "./imports/__import_to_app__";
 import NotFound from "./pages/NotFound";
 import Loader2 from "./components/Loader2";
 import Loader from "./components/Loader";
+import Paginate from "./components/Paginate";
 
 function App() {
   return (
@@ -22,9 +18,13 @@ function App() {
           </div>
         }
       >
+        <Paginate />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/library/:page" element={<Library />} />
+          <Route path="/library" element={<Library />}>
+            <Route path="/library/:page" element={<Library />} />
+          </Route>
+
           <Route path="/pokemon/:name" element={<Pokemon />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<NotFound />} />
