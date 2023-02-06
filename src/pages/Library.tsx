@@ -1,13 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import usePokemons from "../hooks/usePokemons";
 import { useParams } from "react-router-dom";
 import { useGetPokemonSpeciesInGenerationQuery } from "../redux/pokeApi";
-import axios from "../api/axios";
-import { setPokemons, setPrevPage } from "../redux/pokemonSlice";
-import sort from "../functions/quicksort";
 import PokemonCard from "../components/PokemonCard";
-import Paginate from "../components/Paginate";
 
 function Library() {
   const { page } = useParams();
@@ -17,10 +10,10 @@ function Library() {
 
   if (isFetching) {
     return (
-      <>
+      <div className="flex flex-col justify-center items-center h-[calc(100vh-5rem)]">
         <p className="font-bold">Loading...</p>
-        <img width={70} src="../../public/poke_ball.gif" alt="loading-gif" />
-      </>
+        <img width={70} src="/poke_ball.gif" alt="loading-gif" />
+      </div>
     );
   }
 
