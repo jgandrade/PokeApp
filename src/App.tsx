@@ -10,25 +10,27 @@ import LibraryPage from "./pages/LibraryPage";
 
 function App() {
   return (
-    <div className="App min-h-screen min-w-full">
+    <div className="App min-h-screen min-w-full bg-[#222222]">
       <Nav />
-      <Suspense
-        fallback={
-          <div className="h-[calc(100vh-3rem)] flex justify-center items-center">
-            <Loader />
-          </div>
-        }
-      >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/library" element={<LibraryPage />}>
-            <Route path=":page" element={<Library />} />
-          </Route>
-          <Route path="/pokemon/:name" element={<Pokemon />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <div className="mt-[5.25rem]">
+        <Suspense
+          fallback={
+            <div className="h-[calc(100vh-3rem)] flex justify-center items-center">
+              <Loader />
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/library" element={<LibraryPage />}>
+              <Route path=":page" element={<Library />} />
+            </Route>
+            <Route path="/pokemon/:name" element={<Pokemon />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </div>
     </div>
   );
 }

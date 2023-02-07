@@ -1,3 +1,14 @@
+.pokemon-card {
+    animation: pop-up 0.3s ease forwards;
+    transform: scale(0);
+}
+
+@keyframes pop-up {
+    to {
+        transform: scale(1);
+    }
+}
+
 .flip-card {
     background-color: transparent;
     width: 190px;
@@ -9,11 +20,6 @@
 }
 
 .flip-card::after {
-    transition: all .5s;
-
-}
-
-.flip-card:hover::after {
     position: absolute;
     content: "";
     top: 30px;
@@ -23,9 +29,25 @@
     height: 100%;
     width: 100%;
     transform: scale(0.8);
+    background-color: #47A6D8;
     filter: blur(25px);
-    background: #f7ba2b;
-    background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.flip-card:hover::after {
+    animation: scale-up-down 3s infinite ease alternate;
+    opacity: 1;
+}
+
+@keyframes scale-up-down {
+    from {
+        transform: scale(0.7);
+    }
+
+    to {
+        transform: scale(0.9);
+    }
 }
 
 .title {
@@ -49,7 +71,6 @@
 }
 
 .flip-card-front, .flip-card-back {
-    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -58,7 +79,6 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid coral;
     border-radius: 1rem;
 }
 
@@ -68,8 +88,7 @@
 }
 
 .flip-card-back {
-    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, rgb(32, 32, 32) 88%,
-            bisque 40%, rgb(255, 185, 160) 78%);
+    background-color: #333333;
     color: white;
     transform: rotateY(180deg);
 }

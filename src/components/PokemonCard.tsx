@@ -11,10 +11,10 @@ function PokemonCard({ sprites, id, name, weight, height }: any) {
   }, [cardRef]);
 
   return (
-    <div className="flip-card" onClick={() => toggleFlipCard()}>
+    <div className="flip-card pokemon-card" onClick={() => toggleFlipCard()}>
       <div ref={cardRef} className="flip-card-inner">
         <div className="flip-card-front">
-          <div className="flex flex-col justify-center items-stretch border rounded shadow-md min-w-[180px] min-h-[210px] max-h-[210px] max-w-[180px] p-2">
+          <div className="flex flex-col justify-center items-stretch min-w-[180px] min-h-[210px] max-h-[210px] max-w-[180px] p-2">
             <Link
               to={`/pokemon/${name}`}
               className="flex justify-center items-center"
@@ -38,7 +38,7 @@ function PokemonCard({ sprites, id, name, weight, height }: any) {
             </p>
           </div>
         </div>
-        <div className="flip-card-back">
+        <div className="flip-card-back flex flex-col justify-center items-center ">
           <img
             width={100}
             src={`${
@@ -48,8 +48,7 @@ function PokemonCard({ sprites, id, name, weight, height }: any) {
             }`}
             loading="lazy"
           />
-          <p className="title">BACK</p>
-          <p>Leave Me</p>
+          <p className="font-bold">{name.toUpperCase()}</p>
         </div>
       </div>
     </div>

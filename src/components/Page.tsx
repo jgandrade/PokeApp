@@ -6,9 +6,9 @@ function Page({ page }: { page: number }) {
   const isActive = page === Number(urlPage);
   return (
     <Link
-      style={isActive ? { backgroundColor: "red", color: "white" } : {}}
+      style={isActive ? { backgroundColor: "#F15B6C", color: "white" } : {}}
       to={`/library/${page}`}
-      className="border w-10 text-center"
+      className="border w-10 py-2 text-center text-white font-bold rounded-xl gen-btn"
     >
       {page}
     </Link>

@@ -17,7 +17,6 @@ function Paginate() {
 
   return (
     <div className="flex justify-center items-center gap-1 pb-5">
-      <h3>Choose a Generation:</h3>
       {buttons.map((e) => {
         return e;
       })}
