@@ -2,6 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Loader from "./Loader";
 import "../styles/card.css";
 import { bgType } from "../functions/bgType";
+import { FaInfoCircle } from "react-icons/fa";
+import { GiHealthNormal, GiWingfoot } from "react-icons/gi";
+import { BsFillShieldFill } from "react-icons/bs";
+import { RiSwordFill } from "react-icons/ri";
 
 function getType(type: string): { asset1: string; asset2: string } {
   return {
@@ -50,7 +54,7 @@ function PokemonCard({ sprites, id, name, types }: any) {
                 : id}
             </p>
           </div>
-          <div className="flex flex-col justify-center items-center min-w-[180px] min-h-[210px] max-h-[210px] max-w-[180px] p-2">
+          <div className="flex flex-col justify-center items-center min-w-[200px] min-h-[210px] max-h-[210px] max-w-[200px] p-2">
             <div className="flex justify-center items-center">
               {loading ? (
                 <div className="min-h-[100px] max-h-[100px] min-w-[100px] max-w-[100px] flex justify-center items-center">
@@ -66,16 +70,20 @@ function PokemonCard({ sprites, id, name, types }: any) {
               />
             </div>
             <div className="flex flex-col self-start justify-start items-start pt-5">
-              <p className="font-bold pl-3 text-white">{name?.toUpperCase()}</p>
+              <div>
+                <p className="font-bold pl-2 text-white">
+                  {name?.toUpperCase()}
+                </p>
+              </div>
               <div className="flex justify-start items-center">
                 {types.map((e: any) => {
                   return (
                     <img
                       key={e.type.name}
-                      className="pl-2"
+                      className="pl-1"
                       src={getType(e?.type.name).asset2}
                       alt="type-img"
-                      width={80}
+                      width={90}
                     />
                   );
                 })}
@@ -83,10 +91,14 @@ function PokemonCard({ sprites, id, name, types }: any) {
             </div>
           </div>
         </div>
-        <div className="flip-card-back flex flex-col justify-center items-center bg-[#222222] ">
-          <div className="bg-red-400 w-full ">
+        <div className="flip-card-back">
+          <FaInfoCircle fill="#999999" size={20} className="absolute right-5 top-5"/>
+          <p className="font-bold  bg-[#333333] w-[180px] py-1 rounded-xl text-sm mb-3">
+            {name.toUpperCase()}
+          </p>
+          <div className="rounded-full w-30">
             <img
-              width={60}
+              width={80}
               src={`${
                 sprites?.versions["generation-v"]["black-white"].animated
                   ?.front_default ||
@@ -95,7 +107,37 @@ function PokemonCard({ sprites, id, name, types }: any) {
               loading="lazy"
             />
           </div>
-          <p className="font-bold">{name.toUpperCase()}</p>
+          <div className="self-start flex flex-wrap justify-center items-center text-left text-xs w-full gap-2">
+            <div>
+              <p className="flex justify-center items-center">
+                <GiHealthNormal /> <span className="font-normal">100</span>{" "}
+              </p>
+              <p className="flex justify-center items-center">
+                <BsFillShieldFill /> <span className="font-normal">100</span>{" "}
+              </p>
+            </div>
+            <div>
+              <p className="flex justify-center items-center">
+                <RiSwordFill /> <span className="font-normal">100</span>{" "}
+              </p>
+              <p className="flex justify-center items-center">
+                <GiWingfoot /> <span className="font-normal">100</span>{" "}
+              </p>
+            </div>
+            <div className="flex flex-col justify-start items-center">
+              {types.map((e: any) => {
+                return (
+                  <img
+                    key={e.type.name}
+                    className="pl-1"
+                    src={getType(e?.type.name).asset2}
+                    alt="type-img"
+                    width={90}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

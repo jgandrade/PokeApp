@@ -11,7 +11,7 @@
 
 .flip-card {
     background-color: transparent;
-    width: 190px;
+    width: 200px;
     height: 254px;
     perspective: 1000px;
     position: relative;
@@ -87,6 +87,11 @@
 }
 
 .flip-card-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: #222222;
     color: white;
     transform: rotateY(180deg);
 }

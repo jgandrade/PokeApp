@@ -3,9 +3,9 @@ import useDetails from "../hooks/useDetails";
 import Search from "./Search";
 import { NavLink } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
-import pokeball from "../assets/pokeball_nav.png";
 import pokeheader from "../assets/pokeball_header.png";
 import favorites from "../assets/favorites_nav.png";
+import home from "../assets/home_nav.png";
 import cards from "../assets/cards_nav.png";
 import "../styles/login_btn.css";
 
@@ -25,7 +25,7 @@ function Nav() {
             to="/"
           >
             <img
-              src={pokeball}
+              src={home}
               alt="pokeball"
               loading="lazy"
               className="w-8 hover:scale-125 transition-all"
