@@ -36,7 +36,7 @@ function PokemonCard({ sprites, id, name, types }: any) {
               alt="type"
               width={30}
             />
-            <p className="text-white font-bold">
+            <p className="text-[#d1cece] text-xs font-bold">
               #
               {id.toString().length === 1
                 ? `000${id}`
