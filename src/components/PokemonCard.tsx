@@ -83,16 +83,18 @@ function PokemonCard({ sprites, id, name, types }: any) {
             </div>
           </div>
         </div>
-        <div className="flip-card-back flex flex-col justify-center items-center ">
-          <img
-            width={100}
-            src={`${
-              sprites?.versions["generation-v"]["black-white"].animated
-                ?.front_default ||
-              sprites?.other["official-artwork"]?.front_default
-            }`}
-            loading="lazy"
-          />
+        <div className="flip-card-back flex flex-col justify-center items-center bg-[#222222] ">
+          <div className="bg-red-400 w-full ">
+            <img
+              width={60}
+              src={`${
+                sprites?.versions["generation-v"]["black-white"].animated
+                  ?.front_default ||
+                sprites?.other["official-artwork"]?.front_default
+              }`}
+              loading="lazy"
+            />
+          </div>
           <p className="font-bold">{name.toUpperCase()}</p>
         </div>
       </div>

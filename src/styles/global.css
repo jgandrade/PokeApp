@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #222222;
+    background-color: #111111;
 }
 
 .active {
@@ -33,7 +33,7 @@ body {
     filter: saturate(0.5);
 }
 
-.gen-btn{
+.gen-btn {
     animation: pop-up 0.3s ease forwards;
     transform: scale(0);
 }
