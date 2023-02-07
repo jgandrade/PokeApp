@@ -29,7 +29,6 @@
     height: 100%;
     width: 100%;
     transform: scale(0.8);
-    background-color: #47A6D8;
     filter: blur(25px);
     opacity: 0;
     transition: all .5s ease;
@@ -83,12 +82,12 @@
 }
 
 .flip-card-front {
-    background: white;
+    background: #222222;
     color: rgb(3, 3, 3);
 }
 
 .flip-card-back {
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     transform: rotateY(180deg);
 }

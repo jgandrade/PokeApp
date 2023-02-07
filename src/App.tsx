@@ -10,8 +10,9 @@ import LibraryPage from "./pages/LibraryPage";
 
 function App() {
   return (
-    <div className="App min-h-screen min-w-full bg-[#222222]">
+    <div className="App min-h-screen min-w-full bg-[#111111]">
       <Nav />
+      <img srcSet="./assets/types/Bug.png" />
       <div className="mt-[5.25rem]">
         <Suspense
           fallback={
