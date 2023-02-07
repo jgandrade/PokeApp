@@ -17,7 +17,7 @@ function getType(type: string): { asset1: string; asset2: string } {
   };
 }
 
-function PokemonCard({ sprites, id, name, types }: any) {
+function PokemonCard({ sprites, id, name, types, stats }: any) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState(true);
   const toggleFlipCard = useCallback(() => {
@@ -27,11 +27,11 @@ function PokemonCard({ sprites, id, name, types }: any) {
   return (
     <div
       className={`flip-card pokemon-card ${bgType(types[0]?.type.name)}`}
+      onMouseLeave={() => cardRef.current?.classList.remove("rotate-card")}
       onClick={() => toggleFlipCard()}
     >
       <div
         ref={cardRef}
-        onMouseLeave={() => cardRef.current?.classList.remove("rotate-card")}
         className="flip-card-inner justify-center items-center"
       >
         <div className="flip-card-front bg-[#222222]">
@@ -92,9 +92,11 @@ function PokemonCard({ sprites, id, name, types }: any) {
           </div>
         </div>
         <div className="flip-card-back">
-          <FaInfoCircle fill="#999999" size={20} className="absolute right-5 top-5"/>
-          <p className="font-bold  bg-[#333333] w-[180px] py-1 rounded-xl text-sm mb-3">
-            {name.toUpperCase()}
+          <p className="font-bold  bg-[#333333] w-[180px] py-1 rounded-xl text-sm mb-3 flex justify-center items-center relative">
+            {name.toUpperCase()}{" "}
+            <span>
+              <FaInfoCircle fill="#999999" size={20} className="absolute top-1 right-2" />
+            </span>
           </p>
           <div className="rounded-full w-30">
             <img
@@ -110,18 +112,22 @@ function PokemonCard({ sprites, id, name, types }: any) {
           <div className="self-start flex flex-wrap justify-center items-center text-left text-xs w-full gap-2">
             <div>
               <p className="flex justify-center items-center">
-                <GiHealthNormal /> <span className="font-normal">100</span>{" "}
+                <GiHealthNormal />{" "}
+                <span className="font-normal">{stats[0]?.base_stat}</span>{" "}
               </p>
               <p className="flex justify-center items-center">
-                <BsFillShieldFill /> <span className="font-normal">100</span>{" "}
+                <BsFillShieldFill />{" "}
+                <span className="font-normal">{stats[2]?.base_stat}</span>{" "}
               </p>
             </div>
             <div>
               <p className="flex justify-center items-center">
-                <RiSwordFill /> <span className="font-normal">100</span>{" "}
+                <RiSwordFill />{" "}
+                <span className="font-normal">{stats[1]?.base_stat}</span>{" "}
               </p>
               <p className="flex justify-center items-center">
-                <GiWingfoot /> <span className="font-normal">100</span>{" "}
+                <GiWingfoot />{" "}
+                <span className="font-normal">{stats[5]?.base_stat}</span>{" "}
               </p>
             </div>
             <div className="flex flex-col justify-start items-center">
