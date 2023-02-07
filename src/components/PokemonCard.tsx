@@ -27,6 +27,7 @@ function PokemonCard({ sprites, id, name, types }: any) {
     >
       <div
         ref={cardRef}
+        onMouseLeave={() => cardRef.current?.classList.remove("rotate-card")}
         className="flip-card-inner justify-center items-center"
       >
         <div className="flip-card-front bg-[#222222]">
@@ -52,7 +53,7 @@ function PokemonCard({ sprites, id, name, types }: any) {
           <div className="flex flex-col justify-center items-center min-w-[180px] min-h-[210px] max-h-[210px] max-w-[180px] p-2">
             <div className="flex justify-center items-center">
               {loading ? (
-                <div className="min-h-[150px] max-h-[150px] min-w-[150px] max-w-[150px] flex justify-center items-center">
+                <div className="min-h-[100px] max-h-[100px] min-w-[100px] max-w-[100px] flex justify-center items-center">
                   <Loader />
                 </div>
               ) : null}
@@ -70,6 +71,7 @@ function PokemonCard({ sprites, id, name, types }: any) {
                 {types.map((e: any) => {
                   return (
                     <img
+                      key={e.type.name}
                       className="pl-2"
                       src={getType(e?.type.name).asset2}
                       alt="type-img"
