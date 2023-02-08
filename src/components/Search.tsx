@@ -50,11 +50,12 @@ function Search() {
   return (
     <div className="flex flex-col relative justify-center items-center mb-10">
       <input
-        className="transition rounded w-3/12 h-8 border border-solid border-gray-300 ease-in-out bg-[#222222] text-white font-bold bg-clip-padding"
+        className="transition rounded w-5/12 h-12 border-none ease-in-out bg-[#222222] text-white text-2xl font-bold px-3 py-3 outline-none"
         type="text"
         name="search"
         onChange={handleChange}
         value={search}
+        placeholder="Search your pokemon here"
       />
       <div
         className={`${
@@ -65,7 +66,7 @@ function Search() {
                     ? "h-max"
                     : "h-[25vw]"
                   : null
-              }  overflow-x-hidden bg-[#333333] top-[130%] z-50 text-white rounded`
+              }  overflow-x-hidden bg-[#333333] top-[125%] z-50 text-white rounded`
             : "hidden"
         }`}
       >
