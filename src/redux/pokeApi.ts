@@ -25,7 +25,25 @@ export const pokeApi = createApi({
       },
     }),
     getPokemonData: builder.query({
-      query: (name: string | undefined) => `/pokemon/${name}`,
+      query: (id: string | undefined) => `/pokemon/${id}`,
+      transformResponse: async (response: any) => {
+        const count = await axios.get(`/pokemon-species`);
+        const newData: any = await axios.get(
+          `/pokemon-species/${response?.id}`
+        );
+        const newData2 = await axios.get(
+          `/evolution-chain/${
+            newData?.data?.evolution_chain?.url?.split("/")[6]
+          }`
+        );
+        return {
+          ...response,
+          ...newData.data,
+          ...newData2.data,
+          id: response?.id,
+          numberOfSpecies: count.data.count,
+        };
+      },
     }),
   }),
 });

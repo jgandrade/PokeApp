@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
 import "../styles/search.css";
+import { useDispatch } from "react-redux";
+import { setPokemonData } from "../redux/pokemonSlice";
 
 function Search() {
   const [pokemons, setPokemons] = useState<null | undefined | any[]>([]);
@@ -9,9 +11,11 @@ function Search() {
   const [searchReturns, setSearchReturns] =
     useState<{ name: string; url: string }[]>();
   const [search, setSearch] = useState<string>("");
+  const dispatch = useDispatch();
 
   const getData = useCallback(async () => {
-    const data = await axios.get("/pokemon?limit=100000&offset=0");
+    const data = await axios.get("/pokemon-species?limit=100000&offset=0");
+    dispatch(setPokemonData(data.data.results));
     setPokemons(data.data?.results);
   }, []);
 
@@ -57,6 +61,7 @@ function Search() {
         value={search}
         placeholder="Search your pokemon here"
         spellCheck="false"
+        autoComplete="off"
       />
       <div
         className={`${
@@ -67,7 +72,7 @@ function Search() {
                     ? "h-max"
                     : "md:h-[50vh] h-[50vh]"
                   : null
-              }  overflow-x-hidden bg-[#333333] top-[125%] z-50 text-white rounded`
+              } overflow-x-hidden bg-[#333333] top-[125%] z-50 text-white rounded`
             : "hidden"
         }`}
       >
@@ -84,7 +89,9 @@ function Search() {
                 className="transition hover:bg-[#444444] px-5 py-1"
               >
                 <Link to={`/pokemon/${e.name}`}>
-                  <p className="text-white">{e.name.toUpperCase()}</p>
+                  <p className="text-white">
+                    {e.name.slice(0, 1).toUpperCase().concat(e.name.slice(1))}
+                  </p>
                 </Link>
               </div>
             );

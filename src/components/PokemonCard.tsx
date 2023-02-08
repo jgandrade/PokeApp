@@ -8,7 +8,7 @@ import { RiSwordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { Puff } from "react-loader-spinner";
 
-function getType(type: string): { asset1: string; asset2: string } {
+export function getType(type: string): { asset1: string; asset2: string } {
   return {
     asset1: `/Types/${type
       .slice(0, 1)
@@ -101,7 +101,7 @@ function PokemonCard({ sprites, id, name, types, stats }: any) {
         </div>
         <div className="flip-card-back">
           <p className="font-bold  bg-[#333333] w-[180px] py-1 rounded-xl text-sm mb-3 flex justify-center items-center relative">
-            {name.toUpperCase()}{" "}
+            {name.toUpperCase()}
             <span>
               <Link to={`/pokemon/${name}`}>
                 <FaInfoCircle
