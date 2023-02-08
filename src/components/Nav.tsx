@@ -45,7 +45,7 @@ function Nav() {
             />
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             className={({ isActive }) => (isActive ? "active" : "inactive")}
             to="/favorites"
@@ -57,9 +57,9 @@ function Nav() {
               className="w-8 hover:scale-125 transition-all"
             />
           </NavLink>
-        </li>
+        </li> */}
       </ul>
-      <div className="buttons">
+      {/* <div className="buttons">
         <button className="btn">
           <span></span>
           <p
@@ -68,7 +68,7 @@ function Nav() {
             data-title="Catch Em"
           ></p>
         </button>
-      </div>
+      </div> */}
     </nav>
   );
 }

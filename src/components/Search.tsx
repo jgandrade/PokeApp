@@ -50,7 +50,7 @@ function Search() {
   return (
     <div className="flex flex-col relative justify-center items-center mb-10">
       <input
-        className="transition rounded w-5/12 h-12 border-none ease-in-out bg-[#222222] text-white text-2xl font-bold px-3 py-3 outline-none"
+        className="transition rounded w-10/12 h-12 text-lg md:w-5/12 md:h-12 border-none ease-in-out bg-[#222222] text-white md:text-2xl font-bold px-3 py-3 outline-none"
         type="text"
         name="search"
         onChange={handleChange}
@@ -61,11 +61,11 @@ function Search() {
       <div
         className={`${
           toSearch.length > 0
-            ? `scrollbar absolute w-5/12 ${
+            ? `scrollbar absolute w-10/12 md:w-5/12 ${
                 searchReturns
                   ? searchReturns?.length <= 15
                     ? "h-max"
-                    : "h-[25vw]"
+                    : "md:h-[50vh] h-[50vh]"
                   : null
               }  overflow-x-hidden bg-[#333333] top-[125%] z-50 text-white rounded`
             : "hidden"

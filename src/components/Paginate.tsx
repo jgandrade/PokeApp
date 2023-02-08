@@ -16,7 +16,7 @@ function Paginate() {
   const buttons = useMemo(() => displayPagesButton(), [displayPagesButton]);
 
   return (
-    <div className="flex justify-center items-center gap-1 pb-5">
+    <div className="flex flex-wrap justify-center items-center gap-1 pb-5">
       {buttons.map((e) => {
         return e;
       })}
