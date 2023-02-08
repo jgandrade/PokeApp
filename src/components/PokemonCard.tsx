@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import Loader from "./Loader";
+import { useCallback, useRef, useState } from "react";
 import "../styles/card.css";
 import { bgType } from "../functions/bgType";
 import { FaInfoCircle } from "react-icons/fa";
@@ -7,6 +6,7 @@ import { GiHealthNormal, GiWingfoot } from "react-icons/gi";
 import { BsFillShieldFill } from "react-icons/bs";
 import { RiSwordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { Puff } from "react-loader-spinner";
 
 function getType(type: string): { asset1: string; asset2: string } {
   return {
@@ -59,7 +59,14 @@ function PokemonCard({ sprites, id, name, types, stats }: any) {
             <div className="flex justify-center items-center">
               {loading ? (
                 <div className="min-h-[100px] max-h-[100px] min-w-[100px] max-w-[100px] flex justify-center items-center">
-                  <Loader />
+                  <Puff
+                    height="100"
+                    width="100"
+                    radius={1}
+                    color="#777777"
+                    ariaLabel="puff-loading"
+                    visible={true}
+                  />
                 </div>
               ) : null}
               <img

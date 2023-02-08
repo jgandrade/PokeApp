@@ -56,6 +56,7 @@ function Search() {
         onChange={handleChange}
         value={search}
         placeholder="Search your pokemon here"
+        spellCheck="false"
       />
       <div
         className={`${

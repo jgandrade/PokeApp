@@ -18,7 +18,7 @@ function Nav() {
         <img className="w-12" src={pokeheader} alt="poke-header" />
         <h1 className="text-[#F15B6C] ">Pokédex</h1>
       </div>
-      <ul className="flex bg-white px-5 py-3 gap-5 rounded-xl border border-[#222222]">
+      <ul className="flex bg-[#222222] px-5 py-3 gap-5 rounded-xl border border-[#222222]">
         <li>
           <NavLink
             className={({ isActive }) => (isActive ? "active" : "inactive")}

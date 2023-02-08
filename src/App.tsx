@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import { Home, Library, Favorites, Pokemon } from "./imports/__import_to_app__";
 import NotFound from "./pages/NotFound";
-import Loader from "./components/Loader";
 import LibraryPage from "./pages/LibraryPage";
+import { Oval } from "react-loader-spinner";
 
 function App() {
   return (
@@ -14,7 +14,18 @@ function App() {
         <Suspense
           fallback={
             <div className="h-[calc(100vh-3rem)] flex justify-center items-center">
-              <Loader />
+              <Oval
+                height={80}
+                width={80}
+                color="#F15B6C"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#f1a3ad"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+              />
             </div>
           }
         >

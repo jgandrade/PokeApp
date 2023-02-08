@@ -1,0 +1,33 @@
+.clone-container div {
+    animation: fadeinout ease 2s alternate infinite;
+}
+
+.clone-container div:nth-child(1) {
+    animation-delay: 400ms;
+}
+
+.clone-container div:nth-child(2) {
+    animation-delay: 200ms;
+}
+
+.clone-container div:nth-child(3) {
+    animation-delay: 100ms;
+}
+
+.clone-container div:nth-child(4) {
+    animation-delay: 300ms;
+}
+
+.clone-container div:nth-child(5) {
+    animation-delay: 50ms;
+}
+
+@keyframes fadeinout {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
