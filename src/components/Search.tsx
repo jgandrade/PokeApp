@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
 import "../styles/search.css";
@@ -48,9 +48,9 @@ function Search() {
   }, []);
 
   return (
-    <div className="flex flex-col relative justify-center items-center mb-10">
+    <div className="flex flex-col relative justify-center items-center mt-20">
       <input
-        className="transition rounded w-10/12 h-12 text-lg md:w-5/12 md:h-12 border-none ease-in-out bg-[#222222] text-white md:text-2xl font-bold px-3 py-3 outline-none"
+        className="transition rounded w-10/12 md:w-7/12 h-12 text-lg border-none ease-in-out bg-[#222222] text-white md:text-2xl font-bold px-3 py-3 outline-none"
         type="text"
         name="search"
         onChange={handleChange}
@@ -61,7 +61,7 @@ function Search() {
       <div
         className={`${
           toSearch.length > 0
-            ? `scrollbar absolute w-10/12 md:w-5/12 ${
+            ? `scrollbar absolute w-10/12 md:w-7/12 ${
                 searchReturns
                   ? searchReturns?.length <= 15
                     ? "h-max"
@@ -78,6 +78,9 @@ function Search() {
             return (
               <div
                 key={e.name + "-key"}
+                onClick={() => {
+                  setSearch("");
+                }}
                 className="transition hover:bg-[#444444] px-5 py-1"
               >
                 <Link to={`/pokemon/${e.name}`}>

@@ -13,7 +13,11 @@ function Library() {
     return (
       <div className="flex flex-wrap gap-5 justify-center items-center p-5">
         {Array.from(Array(30).keys()).map((e) => {
-          return <LoadingComponents />;
+          return (
+            <div key={e}>
+              <LoadingComponents />
+            </div>
+          );
         })}
       </div>
     );

@@ -1,8 +1,4 @@
-import React from "react";
-import useDetails from "../hooks/useDetails";
-import Search from "./Search";
 import { NavLink } from "react-router-dom";
-import { IoMdPerson } from "react-icons/io";
 import pokeheader from "../assets/pokeball_header.png";
 import favorites from "../assets/favorites_nav.png";
 import home from "../assets/home_nav.png";
@@ -10,10 +6,8 @@ import cards from "../assets/cards_nav.png";
 import "../styles/login_btn.css";
 
 function Nav() {
-  const { name, image } = useDetails();
-
   return (
-    <nav className="flex h-12 z-50 w-screen justify-between items-center scale-90 md:scale-100 md:px-40 text-white font-bold pt-9 fixed top-0">
+    <nav className="flex h-max z-50 w-full justify-between items-center md:px-40 text-white font-bold fixed top-0 p-3">
       <div className="flex gap-1 justify-center items-center mix-blend-difference">
         <img className="w-12" src={pokeheader} alt="poke-header" />
         <h1 className="text-[#F15B6C] ">Pokédex</h1>
