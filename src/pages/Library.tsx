@@ -8,7 +8,7 @@ function Library() {
   const { data, isFetching } = useGetPokemonSpeciesInGenerationQuery(
     Number(page)
   );
-
+    
   if (isFetching) {
     return (
       <div className="flex flex-col justify-center items-center h-[calc(100vh-10.5rem)]">

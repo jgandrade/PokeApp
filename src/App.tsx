@@ -3,16 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import { Home, Library, Favorites, Pokemon } from "./imports/__import_to_app__";
 import NotFound from "./pages/NotFound";
-import Loader2 from "./components/Loader2";
 import Loader from "./components/Loader";
-import Paginate from "./components/Paginate";
 import LibraryPage from "./pages/LibraryPage";
 
 function App() {
   return (
     <div className="App min-h-screen min-w-full bg-[#111111]">
       <Nav />
-      <div className="mt-[5.25rem]">
+      <div className="mt-[7rem]">
         <Suspense
           fallback={
             <div className="h-[calc(100vh-3rem)] flex justify-center items-center">

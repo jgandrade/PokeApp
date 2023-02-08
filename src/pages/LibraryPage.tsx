@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Paginate from "../components/Paginate";
 import { useEffect, useState } from "react";
+import Search from "../components/Search";
 
 function LibraryPage() {
   const location = useLocation();
@@ -12,6 +13,7 @@ function LibraryPage() {
           WELCOME TO POKEDEX LIBRARY CHOOSE YOUR GENERATION BELOW!
         </div>
       ) : null}
+      <Search />
       <Paginate />
       <Outlet />
     </div>

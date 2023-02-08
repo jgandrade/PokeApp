@@ -6,6 +6,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { GiHealthNormal, GiWingfoot } from "react-icons/gi";
 import { BsFillShieldFill } from "react-icons/bs";
 import { RiSwordFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 function getType(type: string): { asset1: string; asset2: string } {
   return {
@@ -95,7 +96,13 @@ function PokemonCard({ sprites, id, name, types, stats }: any) {
           <p className="font-bold  bg-[#333333] w-[180px] py-1 rounded-xl text-sm mb-3 flex justify-center items-center relative">
             {name.toUpperCase()}{" "}
             <span>
-              <FaInfoCircle fill="#999999" size={20} className="absolute top-1 right-2" />
+              <Link to={`/pokemon/${name}`}>
+                <FaInfoCircle
+                  fill="#999999"
+                  size={20}
+                  className="absolute top-1 right-2"
+                />
+              </Link>
             </span>
           </p>
           <div className="rounded-full w-30">
