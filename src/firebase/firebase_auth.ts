@@ -3,13 +3,12 @@ import { getFirestore, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCNIeIHdQp62ZajR47JLe5cSJFlncw_RX8",
-    authDomain: "pokeapp-jg.firebaseapp.com",
-    projectId: "pokeapp-jg",
-    storageBucket: "pokeapp-jg.appspot.com",
-    messagingSenderId: "510909312633",
-    appId: "1:510909312633:web:c28c45f9e375c21506eea8",
-    measurementId: "G-LW909888QQ",
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    measurementId: import.meta.env.VITE_measurementId,
 };
 
 export const app = initializeApp(firebaseConfig);
