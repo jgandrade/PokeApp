@@ -26,11 +26,18 @@ function Pokemon() {
   const { data: pokemonData, isFetching } = useGetPokemonDataQuery(
     allSpeciesData
       .find((e: any) => {
-        if (name?.includes(e?.name) || e?.name.includes(name)) {
+        if (name === e?.name) {
           return e;
         }
       })
-      ?.url?.split("/")[6]
+      ?.url?.split("/")[6] ||
+      allSpeciesData
+        .find((e: any) => {
+          if (name?.includes(e?.name) || e?.name.includes(name)) {
+            return e;
+          }
+        })
+        ?.url?.split("/")[6]
   );
 
   const addToFavorites = useCallback(async () => {
