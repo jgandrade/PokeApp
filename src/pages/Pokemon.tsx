@@ -8,11 +8,20 @@ import romanToNumber from "../functions/numeralConverter";
 import { BiLinkExternal } from "react-icons/bi";
 import axios from "../api/axios";
 import { bgType2 } from "../functions/bgType";
+import { FaHeart } from "react-icons/fa";
+import { db } from "../firebase/firebase_auth";
+import useDetails from "../hooks/useDetails";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../redux/userSlice";
+import Swal from "sweetalert2";
 
 function Pokemon() {
+  const dispatch = useDispatch();
   const { name } = useParams();
   const [loading, setLoading] = useState(true);
   const [evolution, setEvolution] = useState<any>([]);
+  const { id, name: userName, photo, favorites } = useDetails();
   const { pokemonData: allSpeciesData } = usePokemons();
   const { data: pokemonData, isFetching } = useGetPokemonDataQuery(
     allSpeciesData
@@ -23,6 +32,28 @@ function Pokemon() {
       })
       ?.url?.split("/")[6]
   );
+
+  const addToFavorites = useCallback(async () => {
+    const docRef = doc(db, "Users", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      dispatch(
+        setUserDetails({
+          id: id,
+          name: userName,
+          photo: photo,
+          favorites: [...favorites, pokemonData?.id],
+        })
+      );
+      Swal.fire("Pokemon Successfully added to your Favorites");
+      return setDoc(doc(db, "Users", id), {
+        ...docSnap.data(),
+        favorites: [...favorites, pokemonData?.id],
+      })
+        .then((log) => log)
+        .catch((err) => err);
+    }
+  }, [pokemonData, id]);
 
   const getEvolutions = useCallback(
     async (ev1: string, ev2: string, ev3: string) => {
@@ -105,8 +136,6 @@ function Pokemon() {
     );
   }
 
-  console.log(bgType2(pokemonData?.types[0]?.type?.name));
-
   return (
     <>
       {pokemonData?.id > pokemonData?.numberOfSpecies ? (
@@ -115,7 +144,7 @@ function Pokemon() {
         <div className="min-h-screen min-w-full flex flex-col md:flex-row justify-start items-start relative">
           <section
             id="pokemon"
-            className="w-full md:w-6/12 h-80 md:h-screen flex flex-col justify-center items-center md:sticky md:top-0"
+            className="w-full md:w-6/12 h-70 md:h-screen flex flex-col justify-center items-center md:sticky md:top-20"
           >
             <div className="absolute top-0 left-20 flex justify-center items-center bg-[#333333] w-max px-2 py-1 rounded-xl ml-2 mt-3">
               <img
@@ -136,6 +165,22 @@ function Pokemon() {
                   : pokemonData?.id}
               </p>
             </div>
+
+            {id ? (
+              favorites?.some((e: any) => e === pokemonData?.id) ? (
+                <p className="absolute top-0 right-20 bg-[#333333] text-white text-xl font-bold w-max px-2 py-1 rounded-xl mr-2 mt-3">
+                  Favorited
+                </p>
+              ) : (
+                <button
+                  className="absolute top-0 right-20 bg-[#333333] text-white text-xl font-bold w-max px-2 py-1 rounded-xl mr-2 mt-3"
+                  onClick={addToFavorites}
+                >
+                  Add to Favorites
+                </button>
+              )
+            ) : null}
+
             <div className="flex flex-col justify-center items-center relative">
               <img
                 className="animate-pop-out relative z-50 w-[140px] md:w-[200px]"

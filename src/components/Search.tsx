@@ -52,7 +52,7 @@ function Search() {
   }, []);
 
   return (
-    <div className="flex flex-col relative justify-center items-center mt-20">
+    <div className="flex flex-col relative justify-center items-center mt-[100px]">
       <input
         className="transition rounded w-10/12 md:w-7/12 h-12 text-lg border-none ease-in-out bg-[#222222] text-white md:text-2xl font-bold px-3 py-3 outline-none"
         type="text"
@@ -77,7 +77,9 @@ function Search() {
         }`}
       >
         {toSearch.length > 0 && searchReturns?.length === 0 ? (
-          <p className="text-white px-5 py-1 font-bold">No Results Found</p>
+          <p className="text-white px-5 py-1 font-bold text-xl">
+            No Results Found
+          </p>
         ) : (
           searchReturns?.map((e) => {
             return (
@@ -89,7 +91,7 @@ function Search() {
                 className="transition hover:bg-[#444444] px-5 py-1"
               >
                 <Link to={`/pokemon/${e.name}`}>
-                  <p className="text-white">
+                  <p className="text-white text-xl font-semibold">
                     {e.name.slice(0, 1).toUpperCase().concat(e.name.slice(1))}
                   </p>
                 </Link>
