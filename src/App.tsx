@@ -26,7 +26,7 @@ function App() {
       <Suspense
         fallback={
           <div className="h-[calc(100vh-3rem)] flex justify-center items-center">
-            {pokeball}
+            <img src={pokeball} alt="loading" />
           </div>
         }
       >
